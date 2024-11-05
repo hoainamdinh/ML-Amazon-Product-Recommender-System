@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Recommendation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .recommendation-card {
+            margin-bottom: 20px;
+        }
+        .recommendation-card img {
+            max-width: 100%;
+            height: auto;
+        }
+        .recommendation-card .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Product Recommendation System</h1>
+        <form method="post" class="my-4">
+            <div class="input-group">
+                <input type="text" name="item_name" class="form-control" placeholder="Enter product name">
+                <div class="input-group-append">
+                    <input type="submit" value="Search" class="btn btn-primary">
+                </div>
+            </div>
+        </form>
+        {% if item_name %}
+        <h2>Recommendations for "{{ item_name }}":</h2>
+        <div class="row">
+            {% for row in recommendations %}
+            <div class="col-md-4">
+                <div class="card recommendation-card">
+                    <img src="{{ row['IMGURL'] }}" class="card-img-top" alt="{{ row['Name'] }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ row['Name'] }}</h5>
+                        <p class="card-text">Rating: {{ row['Rating'] }}</p>
+                        <p class="card-text">Reviews: {{ row['ReviewCount'] }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
