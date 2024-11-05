@@ -8,7 +8,7 @@ from flask import Flask, request, jsonify, render_template
 app = Flask(__name__)
 
 # Load the data and model
-train_data = pd.read_csv(r'D:\TAI LIEU HOC TAP\Kì 3\Học máy\MID TERM SUBMISSION\Group 09 Model Deploy\cleaned_data.csv')
+train_data = pd.read_csv(os.path.join(os.path.dirname(__file__), 'cleaned_data.csv'))
 
 # Define the content-based recommendation function
 def content_based_recommendations(train_data, item_name, top_n=10):
